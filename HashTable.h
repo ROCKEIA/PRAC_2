@@ -15,6 +15,7 @@ class HashTable<V> : Dict<V> {
 		int max;
 		ListLinked<TableEntry<V>> *table;
 		int h(std::string key){
+			//FUNCION EN LA TABLA QUE DEVUELVE LA SUMA DE LOS VALORES ASCII Y EL TAMAÑO DEL HASH
 			int sum = 0;
 			size_str = key.size();
 			for( int i = 1; i <= size_str; ++i){
@@ -25,18 +26,20 @@ class HashTable<V> : Dict<V> {
 			return pos;
 		};
 	public:
-		HashTable(int size){
+		HashTable(int size){//METODO QUE RESERVARA LA MEMORIA DINAMICA PARA CREAR UNA TABLA DE TAMAÑO SIZE E INICIALIZARA LOS ATRIBUTOS N Y MAX DE LA CLASE
 			n = 0;
 			max = size;
 			table = new ListLinked<TableEntry<V>>[max];
 		};
+//METODO DESTRUCTOR QUE SE ENCARGA DE LIBERAR MEMORIA DINAMICA RESERVADA PARA CREAR LA TABLA
 		~HashTable(){
 			detele[] table;;
 		};
+			//DEVUELVE EL NUMERO TOTAL DE LOS CUBETAS DE LA TABLA
 		int capacity(){
 			return max;
 		};
-
+//SOBRECARGA DEL OPERADOR PARA IMPRIMIR EL CONTENIDO DE LA TABLA HASH
 		friend std::ostream&operator<<(std::ostream out, const HashTable<V> &th){
 			out << "Contenido de las cubetas de la tabla: \n";
 			for(int i = 0;i < th.max; i++){
