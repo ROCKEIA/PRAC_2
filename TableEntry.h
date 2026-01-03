@@ -6,12 +6,13 @@
 
 template <typename V>
 class TableEntry {
-private:
+
+public:
+//He puesto los atributos públicos
     std::string key;
     V value;
     bool hasValue;
-
-public:
+    
     // Constructor con clave y valor
     TableEntry(std::string key, V value) : key(key), value(value), hasValue(true) {}
 
@@ -30,6 +31,15 @@ public:
     friend bool operator!=(const TableEntry<V>& te1, const TableEntry<V>& te2) {
         return !(te1 == te2);
     }
+    
+    //Faltaban estas dos sobrecargas
+        friend bool operator<(const TableEntry<V> &te1, const TableEntry<V> &te2) {
+            return te1.key < te2.key;
+        }
+        
+        friend bool operator>(const TableEntry<V> &te1, const TableEntry<V> &te2) {
+            return te1.key > te2.key;
+        }
 
     // Sobrecarga del operador <<
     friend std::ostream& operator<<(std::ostream& out, const TableEntry<V>& te) {
